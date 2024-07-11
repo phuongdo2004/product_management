@@ -4,20 +4,23 @@ include ../../mixins/box-head.pug
 
 block main
     .container.my-3
-    .row
-        .col-12
-        +box-head("Danh sách sản phẩm")
+        .row
+            .col-12
+            +box-head("Danh sách sản phẩm")
 
-    .row
-        each item in products 
-            .col-4.mb-3
-            .product-item
-                .inner-image
-                //- src ko can #{} alt cs the
-                img(src=item.thumbnail, alt=item.title)
-                .inner-content
-                h3.inner-title #{item.title}
-                .inner-price-new #{item.price}
-                .inner-price-old #{item.prinew}
-                .inner-discount - #{item.discountPercentage} %
-            
+        .row
+            each item in products 
+                .col-4.mb-3
+                    .product-item
+                        .inner-image
+                        //- src ko can #{} alt cs the
+                        img(src=item.thumbnail, alt=item.title , class = "thumbnail")
+                        .inner-content
+                        h3.inner-title 
+                            a(
+                                href =`/products/detail/${item.slug}`
+                            ) #{item.title}
+                        .inner-price-new #{item.price}
+                        .inner-price-old #{item.prinew}
+                        .inner-discount - #{item.discountPercentage} %
+                    

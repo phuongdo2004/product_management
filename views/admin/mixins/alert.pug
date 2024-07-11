@@ -1,0 +1,20 @@
+mixin alert-error(time)
+    - if (messages.error)
+        div(
+            class="alert alert-danger show-alert"
+            show-alert=time 
+        ) #{messages.error}
+
+mixin alert-success(time)
+    - if (messages.success)
+        div(
+            class="alert alert-success show-alert"
+            show-alert=time
+        ) #{messages.success}
+
+mixin alert-deleted(time)
+    - if(messages.deleted)
+        div(
+            class ="alert alert-danger show-alert"
+            show-alert =time
+        ) #{messages.deleted}

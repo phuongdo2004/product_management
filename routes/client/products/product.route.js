@@ -1,17 +1,10 @@
 
 const express = require("express");
 const router = express.Router();
-const productController = require("../../../controllers/client/product.controller"); 
-    router.get("/" ,productController.index);
+const controller = require("../../../controllers/client/product.controller"); 
+    router.get("/" ,controller.index);
+    router.get("/detail/:slug" , controller.detail);
 
+   
 
-    module.exports= router;
-//
-//     const express = require("express");
-// const router = express.Router();
-
-//     router.get("/" , (req , res)=>{
-//         res.render("client/pages/home/index");
-//     });
-  
-//   module.exports= router;
+  module.exports= router;

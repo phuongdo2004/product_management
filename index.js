@@ -1,13 +1,42 @@
 const express = require("express");
 // nhung routteClient vao
 const app = express();
+const cookieParser = require('cookie-parser')
+const  session = require('express-session');
+
+var methodOverride = require('method-override');
+
+// nhung express-flash de hien thi thong bao
+const flash = require('express-flash');
+app.use(cookieParser('keyboard cat'));
+  app.use(session({ cookie: { maxAge: 60000 }}));
+  app.use(flash());
+
+// override with the X-HTTP-Method-Override header in the request
+app.use(methodOverride('_method'));
+
+
+// nhung body parse( phai nhung  trc routerAdmin de no chay tthi no dc tich hop san )
+const bodyParser = require('body-parser');
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+// parse application/json
+app.use(bodyParser.json());
+
 //nhung thu vien dotenv vao
 require('dotenv').config()
+
 const routeClient = require("./routes/client/index.route");
+
+
 const routerAdmin = require("./routes/admin/index.route");
+//bien 
+const systemConfig = require("./config/system");
+// const prefix = require("./config/system");
 
 routerAdmin(app);
-
 
 // nhung thu vien dotenv vao du an
 // require('dotenv').config();// ham config() de oad cau hinh len
@@ -36,6 +65,12 @@ database.connect();
 
 const model = require("./model/product.model");
 
+// dinh nghia r a1 bien co noi dung la admin de dung di dung lai n lan (chi dung trong nhung file pug thoi)
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
+// upload image
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 
 
