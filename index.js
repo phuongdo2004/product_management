@@ -47,12 +47,12 @@ mongoose.connect(process.env.MONGO_URL);
 // process.env.ten bien trong file .ev
 
 //mac dinh di den thu muc views
-app.set("views" , "./views");
+app.set("views" , `${__dirname}/views`);
 // dinh nghia template engine
 app.set("view engine" , "pug");
 // nhung file tinnh neu muon truy ccap thi chi can / la di vao thu muc public r vd(/css/style)
 
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 // lay bien PORT trong file env ra 
 const port   = process.env.PORT;
 
